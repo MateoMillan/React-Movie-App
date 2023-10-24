@@ -1,3 +1,7 @@
+:root {
+	--scaling: 2;
+}
+
 .title-container {
 	width: 100%;
 	display: flex;
@@ -9,39 +13,44 @@
 .title {
 	margin: 80px;
 	position: relative;
-	z-index: 100;
+	z-index: 200;
 	width: 100vw;
 }
 
 .name {
 	text-wrap: nowrap;
 	text-shadow: 0 0 20px #eee;
+	font-size: 80px;
 }
 
 .title-background {
-	transform: rotate(-30deg) scale(1.5);
+	transform: rotate(-30deg) scale(2);
 	z-index: 0;
 	animation: background 9s ease-in-out infinite;
 }
 
 .gradient {
 	position: absolute;
-	background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(12,159,106,0) 100%);
+	background: linear-gradient(
+		0deg,
+		rgba(34, 34, 34, 1) 0%,
+		rgba(34, 34, 34, 0.48503151260504207) 65%,
+		rgba(12, 159, 106, 0) 100%
+	);
 	width: 100%;
-	height: 20%;
+	height: 40%;
 	bottom: 50%;
 	z-index: 150;
 }
 
 @keyframes background {
 	0% {
-		transform: translate() rotate(-30deg) scale(1.5);
+		transform: translate() rotate(-30deg) scale(2);
 	}
 	50% {
-		transform: translate(-30%, 20%) rotate(-30deg) scale(1.5);
+		transform: translate(-30%, 20%) rotate(-30deg) scale(2);
 	}
 	100% {
-		transform: translate() rotate(-30deg) scale(1.5);
+		transform: translate() rotate(-30deg) scale(2);
 	}
-
 }
