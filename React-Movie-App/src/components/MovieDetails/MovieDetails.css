@@ -1,0 +1,43 @@
+.movie-details {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #222;
+	height: 100vh;
+	color: #ddd;
+}
+
+.top {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.details-image {
+	margin: 30px;
+	height: 50vh;
+	border-radius: 20px;
+	box-shadow: 0 0 10px black;
+}
+
+.rated-image {
+	width: 180px;
+	position: absolute;
+	top: 50px;
+	right: 50px;
+}
+
+.bottom {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+}
+
+.ratings {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	align-items: center;
+	justify-content: space-evenly;
+}
