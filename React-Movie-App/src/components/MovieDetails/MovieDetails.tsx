@@ -3,7 +3,6 @@ import "./MovieDetails.css";
 import { useParams } from "react-router";
 import Details from "./Details/Details";
 import Ratings from "./Ratings/Ratings";
-import "../../assets/G-rating.svg";
 
 export default function MovieDetails() {
 	const { imdbID } = useParams();
