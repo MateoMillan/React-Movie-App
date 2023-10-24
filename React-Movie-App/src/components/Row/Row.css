@@ -1,0 +1,30 @@
+.row {
+	display: flex;
+	overflow-x: hidden;
+	background-color: #222;
+	align-items: center;
+	scroll-behavior: smooth;
+	padding: 40px;
+}
+
+.row-button {
+	position: absolute;
+	margin: 60px;
+	font-size: 40px;
+	background-color: transparent;
+	border: none;
+	color: #ddd;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.row-button:active {
+	transform: scale(.8);
+}
+
+#forward-button {
+	right: -10px;
+}
+#back-button {
+	left: -10px;
+}

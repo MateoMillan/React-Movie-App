@@ -1,0 +1,11 @@
+.movie {
+	margin: 10px;
+	padding: 10px;
+}
+
+.movie-image {
+	width: 300px;
+	border-radius: 20px;
+	height: 480px;
+	box-shadow: 0 0 10px black;
+}

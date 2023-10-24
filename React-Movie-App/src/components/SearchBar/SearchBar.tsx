@@ -26,14 +26,17 @@ export default function SearchBar() {
 
 	return (
 		<div className="search-bar">
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="form">
 				<input
 					type="text"
 					name="search"
+					placeholder="Search some movie..."
+					className="search"
+					autoComplete="off"
 					value={searchValue}
 					onChange={handleChange}
 				/>
-				<button type="submit">
+				<button type="submit" className="search-button">
 					<IoSearchOutline />
 				</button>
 			</form>
