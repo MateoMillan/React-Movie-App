@@ -1,10 +1,13 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import "./SearchBar.css";
-import { IoSearchOutline } from "react-icons/io5";
 
-export default function SearchBar() {
-	const [searchValue, setSearchValue] = useState("");
-
+export default function SearchBar({
+	searchValue,
+	setSearchValue,
+}: {
+	searchValue: string;
+	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}) {
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		fetch(`http://www.omdbapi.com/?apikey=28435cd&s=${searchValue}`)
@@ -14,7 +17,9 @@ export default function SearchBar() {
 				}
 				return response.json();
 			})
-			.then(data => {console.log(data)})
+			.then((data) => {
+				console.log(data);
+			})
 			.catch((error) => {
 				console.error("Error al buscar:", error);
 			});
@@ -30,15 +35,14 @@ export default function SearchBar() {
 				<input
 					type="text"
 					name="search"
+					autoFocus
 					placeholder="Search some movie..."
 					className="search"
+					autoCorrect="off"
 					autoComplete="off"
 					value={searchValue}
 					onChange={handleChange}
 				/>
-				<button type="submit" className="search-button">
-					<IoSearchOutline />
-				</button>
 			</form>
 		</div>
 	);

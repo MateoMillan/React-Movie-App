@@ -1,4 +1,4 @@
-import "./Row.css";
+import "./FavouritesRow.css";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 import Movie from "../Movie/Movie";
 import NoMovie from "../NoMovie/NoMovie";
@@ -12,21 +12,21 @@ export default function Row({
 	addMovieToFavourites: (movie: Movie) => void;
 	removeFavourites: (movie: Movie) => void;
 }) {
-	const row = document.getElementById("row");
+	const row = document.getElementById("favourites-row");
 	const handleBack = () => {
 		if (row && row?.scrollLeft !== 0) {
-			row.scrollLeft -= row.clientWidth - 300;
+			row.scrollLeft -= row.clientWidth;
 		}
 	};
 
 	const handleForward = () => {
 		if (row && row?.scrollLeft !== row.scrollWidth) {
-			row.scrollLeft += row.clientWidth - 300;
+			row.scrollLeft += row.clientWidth;
 		}
 	};
 
 	return (
-		<div className="row" id="row">
+		<div className="favourites-row" id="favourites-row">
 			<button
 				className="row-button"
 				id="back-button"
@@ -34,9 +34,8 @@ export default function Row({
 			>
 				<IoChevronBackOutline />
 			</button>
-			<div className="left-gradient"></div>
 			{movies.length === 0 ? (
-				<NoMovie text="Try search something" />
+				<NoMovie text="No movie saved yet" />
 			) : (
 				movies.map((element, index) => {
 					return (
@@ -45,11 +44,11 @@ export default function Row({
 							key={index}
 							addMovieToFavourites={addMovieToFavourites}
 							removeFavourites={removeFavourites}
+							isSaved
 						/>
 					);
 				})
 			)}
-			<div className="right-gradient"></div>
 			<button
 				className="row-button"
 				id="forward-button"

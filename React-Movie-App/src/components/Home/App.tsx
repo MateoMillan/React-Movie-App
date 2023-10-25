@@ -3,14 +3,34 @@ import "./App.css";
 import Row from "../Row/Row";
 import TitleContainer from "./TitleContainer/TitleContainer";
 import SearchBar from "../SearchBar/SearchBar";
-
+import FavouritesRow from "../FavouritesRow/FavouritesRow";
 
 function App() {
 	const [movies, setMovies] = useState<Movies>([]);
-	useEffect(() => {
-		fetch(
-			"http://www.omdbapi.com/?apikey=28435cd&s=star%20wars"
-		)
+	const [savedMovies, setSavedMovies] = useState<Movies>([]);
+	const [searchValue, setSearchValue] = useState("star wars");
+
+	const initializeSavedMovies = () => {
+		let initialSavedMovies: Movies = [];
+		for (let i = 0; i < localStorage.length; i++) {
+			if (
+				localStorage.key(i) &&
+				localStorage.getItem(localStorage.key(i) as string)
+			) {
+				initialSavedMovies.push(
+					JSON.parse(
+						localStorage.getItem(
+							localStorage.key(i) as string
+						) as string
+					)
+				);
+			}
+		}
+		setSavedMovies(initialSavedMovies);
+	};
+
+	const requestMovies = () => {
+		fetch(`http://www.omdbapi.com/?apikey=28435cd&s=${searchValue}`)
 			.then((response) => {
 				if (response.status !== 200) {
 					throw new Error(
@@ -20,17 +40,58 @@ function App() {
 				return response.json();
 			})
 			.then((data) => {
-				setMovies(data.Search);
+				if (data.Search) {
+					setMovies(data.Search);
+				}
 			})
 			.catch((error) => {
 				console.error("Error al obtener datos de la API:", error);
 			});
+	};
+
+	const addToFavourites = (movie: Movie) => {
+		if (!savedMovies.includes(movie)) {
+			setSavedMovies([...savedMovies, movie]);
+			localStorage.setItem(movie.Title, JSON.stringify(movie));
+		}
+	};
+
+	const removeFavourites = (movie: Movie) => {
+		setSavedMovies(
+			savedMovies.filter((element) => {
+				return element !== movie;
+			})
+		);
+		localStorage.removeItem(movie.Title);
+	};
+
+	useEffect(() => {
+		requestMovies();
+	}, [searchValue]);
+
+	useEffect(() => {
+		initializeSavedMovies();
 	}, []);
+
 	return (
 		<>
 			<TitleContainer />
-			<SearchBar />
-			<Row movies={movies}/>
+			<SearchBar
+				searchValue={searchValue}
+				setSearchValue={setSearchValue}
+			/>
+			<h3 className="row-title">Movies</h3>
+			<Row
+				movies={movies}
+				addMovieToFavourites={addToFavourites}
+				removeFavourites={removeFavourites}
+			/>
+			<h3 className="row-title">Favourites</h3>
+			<FavouritesRow
+				movies={savedMovies}
+				addMovieToFavourites={addToFavourites}
+				removeFavourites={removeFavourites}
+			/>
 		</>
 	);
 }
