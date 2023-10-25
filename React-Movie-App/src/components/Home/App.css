@@ -10,3 +10,11 @@
 html {
 	overflow-x: hidden;
 }
+
+#root {
+	background-color: #222;
+}
+
+.row-title {
+	margin-top: 50px;
+}
