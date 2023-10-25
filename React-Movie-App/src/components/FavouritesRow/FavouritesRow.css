@@ -1,4 +1,4 @@
-.row {
+.favourites-row {
 	display: flex;
 	overflow-x: hidden;
 	background-color: #222;
@@ -15,7 +15,6 @@
 	background-color: transparent;
 	border: none;
 	color: #ddd;
-	z-index: 550;
 	cursor: pointer;
 	transition: 0.2s;
 }
@@ -27,13 +26,6 @@
 #forward-button {
 	right: -10px;
 }
-
 #back-button {
 	left: -10px;
-}
-
-.row-title {
-	background-color: #222;
-	color: #ddd;
-	padding: 0 80px;
 }

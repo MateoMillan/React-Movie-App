@@ -19,8 +19,9 @@
 
 .name {
 	text-wrap: nowrap;
-	text-shadow: 0 0 20px #eee;
+	text-shadow: 0 0 20px #111;
 	font-size: 80px;
+	color: #c42121;
 }
 
 .title-background {

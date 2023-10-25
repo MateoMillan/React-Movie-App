@@ -1,9 +1,85 @@
 .movie {
-	margin: 10px;
-	padding: 10px;
+	position: relative;
+	margin: 20px;
+	z-index: 100;
+	transition: 0.2s;
+	animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
+	animation-duration: .2s;
+}
+
+.movie:hover {
+	transform: scale(1.1);
 }
 
 .movie-image {
+	position: relative;
+	width: 300px;
+	border-radius: 20px;
+	height: 480px;
+	z-index: 100;
+	box-shadow: 0 0 10px black;
+	transition: 0.2s;
+}
+
+.movie:hover .save {
+	bottom: -50px;
+}
+
+.save {
+	position: absolute;
+	width: 100%;
+	bottom: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	background-color: #222;
+	overflow: hidden;
+	z-index: 0;
+	transition: 0.2s;
+	border-radius: 0 0 20px 20px;
+}
+
+.save-button {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 80px;
+	font-size: 30px;
+	padding: 15px;
+	cursor: pointer;
+	color: #ddd;
+	border: none;
+	background-color: transparent;
+	transition: 0.2s;
+}
+
+.save-icon {
+	height: 28px;
+	transition: 0.1s;
+}
+
+.save-button:active .save-icon {
+	transform: scale(0.8);
+}
+
+.add {
+	background-color: #1eb01e;
+}
+
+.remove {
+	background-color: #b01e1e;
+}
+
+.add:hover {
+	background-color: #178917;
+}
+
+.remove:hover {
+	background-color: #891717;
+}
+
+.no-image {
 	width: 300px;
 	border-radius: 20px;
 	height: 480px;

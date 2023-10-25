@@ -1,0 +1,19 @@
+.no-movie {
+	margin: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.no-movie-image {
+	width: 300px;
+	border-radius: 20px;
+}
+
+.no-movie-header {
+	display: inline;
+	color: #ddd;
+
+}
