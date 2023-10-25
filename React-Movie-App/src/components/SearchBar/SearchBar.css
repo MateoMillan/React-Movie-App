@@ -1,7 +1,11 @@
 .search-bar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: transparent;
 	display: flex;
-	background-color: #222;
 	justify-content: center;
+	z-index: 1000;
 }
 
 .form {
@@ -13,7 +17,7 @@
 .search {
 	position: relative;
 	font-size: 26px;
-	padding: 20px;
+	padding: 20px 30px;
 	width: 30vw;
 	border-radius: 100px;
 	border: 1px solid #444;
