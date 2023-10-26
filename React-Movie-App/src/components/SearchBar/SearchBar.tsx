@@ -1,5 +1,6 @@
-import { ChangeEvent, FormEvent } from "react";
 import "./SearchBar.css";
+import { ChangeEvent, FormEvent } from "react";
+import { IoSearchOutline } from "react-icons/io5";
 
 export default function SearchBar({
 	searchValue,
@@ -8,6 +9,8 @@ export default function SearchBar({
 	searchValue: string;
 	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 }) {
+	const search = document.getElementById("search")
+
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		fetch(`http://www.omdbapi.com/?apikey=28435cd&s=${searchValue}`)
@@ -25,12 +28,20 @@ export default function SearchBar({
 			});
 	}
 
+	function handleClick() {
+		if (search?.classList.contains("lifted")) {
+			search.classList.remove("lifted")
+		} else {
+			search?.classList.add("lifted")
+		}
+	}
+
 	function handleChange(event: ChangeEvent<HTMLInputElement>) {
 		setSearchValue(event.target.value);
 	}
 
 	return (
-		<div className="search-bar">
+		<div className="search-bar" id="search-bar">
 			<form onSubmit={handleSubmit} className="form">
 				<input
 					type="text"
@@ -38,12 +49,16 @@ export default function SearchBar({
 					autoFocus
 					placeholder="Search some movie..."
 					className="search"
+					id="search"
 					autoCorrect="off"
 					autoComplete="off"
 					value={searchValue}
 					onChange={handleChange}
 				/>
 			</form>
+			<button className="search-button" onClick={handleClick}>
+				<IoSearchOutline />
+			</button>
 		</div>
 	);
 }

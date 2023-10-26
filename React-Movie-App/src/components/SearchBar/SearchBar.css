@@ -6,27 +6,66 @@
 	display: flex;
 	justify-content: center;
 	z-index: 1000;
+	transition: .2s all;
 }
 
 .form {
 	margin: 40px;
 	display: flex;
 	align-items: center;
+	transition: .2s all;
+}
+
+.search-button {
+	display: none;
+	transition: .2s all;
+	outline: none;
 }
 
 .search {
 	position: relative;
 	font-size: 26px;
 	padding: 20px 30px;
-	width: 30vw;
+	width: 600px;
 	border-radius: 100px;
 	border: 1px solid #444;
 	outline: none;
 	background-color: #272727;
 	caret-color: #aaa;
 	color: #ddd;
+	transition: .2s all;
 }
 
 .search::placeholder {
 	color: #999;
+}
+
+@media screen and (max-width: 1170px) {
+	.lifted {
+		position: absolute;
+		top: -180px;
+		transition: .2s all;
+	}
+
+	.form {
+		margin: 20px;
+	}
+
+	.search {
+		width: 90vw;
+	}
+
+	.search-button {
+		display: inline;
+		color: #ddd;
+		position: absolute;
+		top: 7px;
+		right: .5em;
+		font-size: 40px;
+		background-color: transparent;
+		border: none;
+		padding: 30px;
+		border-radius: 100px;
+		cursor: pointer;
+	}
 }

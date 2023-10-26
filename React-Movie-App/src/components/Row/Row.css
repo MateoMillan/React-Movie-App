@@ -37,3 +37,18 @@
 	color: #ddd;
 	padding: 0 80px;
 }
+
+
+@media screen and (max-width: 1170px) {
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		height: fit-content;
+		justify-content: center;
+		padding: 40px 40px;
+	}
+
+	.row-button {
+		display: none;
+	}
+}
