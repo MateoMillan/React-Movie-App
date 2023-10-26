@@ -9,6 +9,10 @@ function App() {
 	const [movies, setMovies] = useState<Movies>([]);
 	const [savedMovies, setSavedMovies] = useState<Movies>([]);
 	const [searchValue, setSearchValue] = useState("star wars");
+	const [filters, setFilters] = useState<Filters>({
+		year: "All",
+		type: "All",
+	});
 
 	const initializeSavedMovies = () => {
 		let initialSavedMovies: Movies = [];
@@ -30,7 +34,11 @@ function App() {
 	};
 
 	const requestMovies = () => {
-		fetch(`http://www.omdbapi.com/?apikey=28435cd&s=${searchValue}`)
+		fetch(
+			`http://www.omdbapi.com/?apikey=28435cd&s=${searchValue}&${
+				filters.year !== "All" && `y=${filters.year}`
+			}&${filters.type !== "All" && `type=${filters.type}`}`
+		)
 			.then((response) => {
 				if (response.status !== 200) {
 					throw new Error(
@@ -67,7 +75,7 @@ function App() {
 
 	useEffect(() => {
 		requestMovies();
-	}, [searchValue]);
+	}, [searchValue, filters]);
 
 	useEffect(() => {
 		initializeSavedMovies();
@@ -79,6 +87,8 @@ function App() {
 			<SearchBar
 				searchValue={searchValue}
 				setSearchValue={setSearchValue}
+				filters={filters}
+				setFilters={setFilters}
 			/>
 			<h3 className="row-title">Movies</h3>
 			<Row

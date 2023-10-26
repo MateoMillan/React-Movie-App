@@ -51,3 +51,11 @@ interface RoutingError {
 	statusText: string;
 	message: string;
 }
+
+
+// Filters
+
+interface Filters {
+	year: string; 
+	type: string
+}
