@@ -1,22 +1,47 @@
+:root {
+	--background-color: #222222e8;
+}
+
 .movie-details {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	background-color: #222;
+	background-color: var(--background-color);
 	height: 100vh;
 	color: #ddd;
 }
 
 .top {
 	display: flex;
+	margin-top: 50vh;
+	padding-left: 80px;
+	width: 100%;
+	z-index: 500;
+	background-color: var(--background-color);
 	justify-content: flex-start;
 }
 
 .details-image {
-	margin: 30px;
-	height: 50vh;
+	position: fixed;
+	margin: 40px;
+	right: 50px;
+	height: 100vh;
 	border-radius: 20px;
 	box-shadow: 0 0 10px black;
+}
+
+.details-gradient {
+	position: absolute;
+	background: linear-gradient(
+		0deg,
+		var(--background-color) 0%,
+		rgba(34, 34, 34, 0.48503151260504207) 65%,
+		rgba(12, 159, 106, 0) 100%
+	);
+	width: 100%;
+	height: 40%;
+	bottom: 50%;
+	z-index: 150;
 }
 
 .rated-image {
@@ -29,6 +54,17 @@
 .bottom {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	background-color: var(--background-color);
+	padding-top: 40px;
+	z-index: 500;
+	height: 100%;
+}
+
+.ratings-container {
+	display: flex;
+	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
 	height: 100%;
@@ -36,8 +72,69 @@
 
 .ratings {
 	display: flex;
-	height: 100%;
-	width: 100%;
 	align-items: center;
 	justify-content: space-evenly;
+	z-index: 500;
+	width: 50vw;
+	height: 80%;
+}
+
+.details {
+	display: flex;
+	align-items: center;
+	height: 40px;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	width: 200px;
+}
+
+.plot {
+	margin-top: 20px;
+	width: 50%;
+}
+
+.title-details {
+	position: fixed;
+	margin: 80px;
+	
+	z-index: 200;
+	width: 100vw;
+}
+
+.name-details {
+	color: #c42121;
+	text-wrap: nowrap;
+	font-family: "Raleway", sans-serif;
+	text-shadow: 0 0 20px #111;
+	font-size: 60px;
+}
+
+
+@media screen and (max-width: 950px) {
+	.ratings {
+		width: 100vw;
+	}
+
+	.details-image {
+		justify-self: center;
+		top: 20vh;
+		transform: scale(1.5);
+		right: 0;
+		width: 80vw;
+		height: auto;
+	}
+
+	.movie-title {
+		justify-self: center;
+		width: 80%;
+	}
+
+	.name-details {
+		font-size: 40px;
+		margin-top: -40px;
+	}
+
+	.plot {
+		width: 80%;
+	}
 }

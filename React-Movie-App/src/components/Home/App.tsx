@@ -92,7 +92,7 @@ function App() {
 				filters={filters}
 				setFilters={setFilters}
 			/>
-			<h3 className="row-title">Movies</h3>
+			<h3 className="row-title">Search movies</h3>
 			<Row
 				movies={movies}
 				addMovieToFavourites={addToFavourites}

@@ -34,6 +34,10 @@
 	color: #ddd;
 }
 
+.filter-label {
+	color: #ddd;
+}
+
 .search-button {
 	display: none;
 	transition: .2s all;

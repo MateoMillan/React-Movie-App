@@ -17,7 +17,7 @@ export default function SearchBar({
 	setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }) {
 	const search = document.getElementById("search");
-	const filterContainer = document.getElementById("filter-container")
+	const filterContainer = document.getElementById("filter-container");
 
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -39,10 +39,10 @@ export default function SearchBar({
 	function handleClick() {
 		if (search?.classList.contains("lifted")) {
 			search.classList.remove("lifted");
-			filterContainer?.classList.remove("lifted")
+			filterContainer?.classList.remove("lifted");
 		} else {
 			search?.classList.add("lifted");
-			filterContainer?.classList.add("lifted")
+			filterContainer?.classList.add("lifted");
 		}
 	}
 
@@ -55,7 +55,6 @@ export default function SearchBar({
 	}
 
 	function handleTypeSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-
 		setFilters({ year: filters.year, type: event.target.value });
 	}
 
@@ -75,20 +74,26 @@ export default function SearchBar({
 					onChange={handleChange}
 				/>
 				<div className="filter-container lifted" id="filter-container">
-					<Select
-						name="year"
-						id="year-select"
-						options={["All", ...years]}
-						className="select"
-						onChange={handleYearSelectChange}
-					/>
-					<Select
-						name="type"
-						id="type-select"
-						options={["All", ...types]}
-						className="select"
-						onChange={handleTypeSelectChange}
-					/>
+					<div>
+						<b className="filter-label">Year:</b>
+						<Select
+							name="year"
+							id="year-select"
+							options={["All", ...years]}
+							className="select"
+							onChange={handleYearSelectChange}
+						/>
+					</div>
+					<div>
+						<b className="filter-label">Type:</b>
+						<Select
+							name="type"
+							id="type-select"
+							options={["All", ...types]}
+							className="select"
+							onChange={handleTypeSelectChange}
+						/>
+					</div>
 				</div>
 			</form>
 			<button className="search-button" onClick={handleClick}>
