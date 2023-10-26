@@ -29,3 +29,17 @@
 #back-button {
 	left: -10px;
 }
+
+@media screen and (max-width: 1170px) {
+	.favourites-row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		height: fit-content;
+		padding: 40px 40px;
+	}
+
+	.row-button {
+		display: none;
+	}
+}
