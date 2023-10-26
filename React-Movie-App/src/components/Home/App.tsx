@@ -4,6 +4,8 @@ import Row from "../Row/Row";
 import TitleContainer from "./TitleContainer/TitleContainer";
 import SearchBar from "../SearchBar/SearchBar";
 import FavouritesRow from "../FavouritesRow/FavouritesRow";
+import Footer from "../Footer/Footer";
+import footerItems from "../../data/footer-items.json";
 
 function App() {
 	const [movies, setMovies] = useState<Movies>([]);
@@ -102,6 +104,7 @@ function App() {
 				addMovieToFavourites={addToFavourites}
 				removeFavourites={removeFavourites}
 			/>
+			<Footer items={footerItems} />
 		</>
 	);
 }

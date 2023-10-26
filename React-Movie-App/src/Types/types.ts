@@ -59,3 +59,12 @@ interface Filters {
 	year: string; 
 	type: string
 }
+
+// Footer 
+
+interface Items {
+	items: {
+		icon: string;
+		text: string[];
+	}[];
+}

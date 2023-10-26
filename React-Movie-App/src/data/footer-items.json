@@ -1,0 +1,14 @@
+[
+	{
+		"icon": "IoMailOutline",
+		"text": [
+			"Mail: ",
+			"mateo4millan@gmail.com",
+			"mailto:mateo4millan@gmail.com"
+		]
+	},
+	{
+		"icon": "IoCallOutline",
+		"text": ["Phone: ", "+5493541636344", "tel:+5493541636344"]
+	}
+]

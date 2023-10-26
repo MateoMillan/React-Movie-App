@@ -1,0 +1,33 @@
+.footer {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	color: #c42121;
+	background-color: #292929;
+	padding: 30px;
+	border-top: 1px solid #424242;
+}
+
+.item-container {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	color: #292929;;
+}
+
+.footer-item {
+	margin: 5px;
+	text-decoration: none;
+	color: #d04d4d;
+}
+
+.item-container a {
+	color: #ddd;
+}
+
+@media screen and (max-width: 1170px) {
+	.footer {
+		flex-direction: column;
+	}
+}
