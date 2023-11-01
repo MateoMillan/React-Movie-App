@@ -15,7 +15,7 @@ interface Rating {
 	Value: string;
 }
 
-type Ratings = Rating[]
+type Ratings = Rating[];
 
 interface MovieInfo {
 	Title: string;
@@ -52,15 +52,14 @@ interface RoutingError {
 	message: string;
 }
 
-
 // Filters
 
 interface Filters {
-	year: string; 
-	type: string
+	year: string;
+	type: string;
 }
 
-// Footer 
+// Footer
 
 interface Items {
 	items: {
@@ -68,3 +67,17 @@ interface Items {
 		text: string[];
 	}[];
 }
+
+// Profile
+
+interface Profile {
+	id: number;
+	name: string;
+	age: number;
+	gender: "Male" | "Female";
+	mail: string;
+	password: string;
+	favourites: Movies;
+}
+
+type Users = Profile[]
