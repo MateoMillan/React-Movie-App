@@ -1,0 +1,98 @@
+.profile-container {
+	position: absolute;
+	top: 40px;
+	right: 150px;
+	font-size: 40px;
+	color: #ddd;
+	margin: 10px;
+	cursor: pointer;
+	padding: 10px;
+	z-index: 1200;
+}
+
+.mini-profile {
+	width: 300px;
+	position: absolute;
+	top: 150px;
+	right: 50px;
+	background-color: #222;
+	color: #ddd;
+	border-radius: 25px;
+	overflow: hidden;
+	opacity: 1;
+	border: 1px solid #444;
+	transition: 0.2s;
+}
+
+.hidden {
+	opacity: 0;
+	top: -100px;
+	z-index: -100;
+}
+
+.mini-profile-item {
+	padding: 20px;
+	font-size: 10px;
+}
+
+.mini-profile-top {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.mini-profile-name {
+	font-size: 25px;
+}
+
+.mini-profile-middle-bottom {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.mini-profile-bottom {
+	display: flex;
+	justify-content: space-between;
+}
+
+.log-out {
+	color: #c42121;
+}
+
+.edit {
+	color: #21c4c4;
+}
+
+.mini-profile-button {
+	background: none;
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0 10px;
+	font-size: 15px;
+	font-weight: 700;
+	border: 1px solid #444;
+	padding: 15px;
+	border-radius: 1000px;
+	transition: .2s;
+}
+
+.edit:hover {
+	color: #222;
+	background-color: #21c4c4;
+	border: 1px solid #27d7d7;
+}
+
+.log-out:hover {
+	color: #222;
+	background-color: #c42121;
+	border: 1px solid #eb2a2a;
+}
+
+@media screen and (max-width: 1170px) {
+	.profile-container {
+		display: none;
+	}
+}

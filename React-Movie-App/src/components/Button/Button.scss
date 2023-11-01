@@ -1,0 +1,165 @@
+.customButton,
+.button-icon {
+	box-sizing: border-box;
+	cursor: pointer;
+	outline: none;
+	transition: 0.25s;
+	border-radius: 20px;
+}
+
+.customButton,
+.button-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.customButton {
+	border: none;
+	width: 100%;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 16px;
+	text-align: center;
+	letter-spacing: 0.0125rem;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: 0.2s;
+}
+
+.button-icon {
+	flex-direction: row;
+	padding: 16px;
+	width: 48px;
+	height: 48px;
+	border: 2px solid #9747ff;
+}
+
+/* Button colors */
+.primary {
+	background-color: #c42121;
+}
+
+.danger {
+	background-color: #e96d6d;
+}
+
+.success {
+	background-color: #6de981;
+}
+
+.success,
+.danger,
+.primary {
+	color: #ffffff;
+}
+
+.outline-primary {
+	border: 2px solid #9747ff;
+	color: #9747ff;
+}
+
+.outline-danger {
+	border: 1px solid #e96d6d;
+	color: #e96d6d;
+}
+
+.outline-success {
+	border: 1px solid #6de981;
+	color: #6de981;
+}
+
+.outline-success,
+.outline-danger,
+.outline-primary,
+.button-icon {
+	background-color: transparent;
+}
+
+/* Button sizes */
+.small {
+	height: 2rem;
+}
+
+.large {
+	height: 4rem;
+}
+
+.full {
+	width: 100%;
+}
+
+.fixed {
+	min-width: fit-content;
+	width: 132px;
+	padding: 0 1rem;
+}
+/* Button Effects */
+.customButton.primary:hover {
+	background: #d93030;
+}
+
+/* Disabled */
+.customButton.primary:disabled {
+	background: #9747ff;
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.customButton.outline:disabled {
+	border: 1px solid #9747ff;
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.customButton.danger:disabled {
+	border: 1px solid #e96d6d;
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.customButton.success:disabled {
+	border: 1px solid #6de981;
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+//Spinner
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.loading-spinner {
+	border-radius: 50%;
+	animation: spinner 1.5s linear infinite;
+}
+
+.spinner-primary {
+	border: 5px solid transparent; /* Light grey */
+	border-top: 5px solid #ffffff; /* Black */
+}
+
+.spinner-outline {
+	border: 5px solid transparent;
+	border-top: 5px solid #9747ff;
+}
+
+.spinner-danger {
+	border: 5px solid transparent;
+	border-top: 5px solid #e96d6d;
+}
+
+.spinner-large {
+	width: 22px;
+	height: 22px;
+}
+
+.spinner-small {
+	width: 15px;
+	height: 15px;
+}

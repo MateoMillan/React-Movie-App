@@ -4,18 +4,21 @@ import { IoSearchOutline } from "react-icons/io5";
 import Select from "../Select/Select";
 import years from "../../data/years.json";
 import types from "../../data/mediaTypes.json";
+import Profile from "../Profile/Profile";
+
+interface SearchBarProps {
+	searchValue: string;
+	filters: Filters;
+	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+	setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+}
 
 export default function SearchBar({
 	searchValue,
-	setSearchValue,
 	filters,
+	setSearchValue,
 	setFilters,
-}: {
-	searchValue: string;
-	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-	filters: Filters;
-	setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-}) {
+}: SearchBarProps) {
 	const search = document.getElementById("search");
 	const filterContainer = document.getElementById("filter-container");
 
@@ -60,6 +63,7 @@ export default function SearchBar({
 
 	return (
 		<div className="search-bar" id="search-bar">
+			<div className="profile-container"></div>
 			<form onSubmit={handleSubmit} className="form">
 				<input
 					type="text"
@@ -96,6 +100,17 @@ export default function SearchBar({
 					</div>
 				</div>
 			</form>
+			<Profile
+				profile={{
+					id: 2,
+					name: "Mateo",
+					mail: "yo@gmail.com",
+					password: "xd",
+					gender: "Male",
+					age: 19,
+					favourites: [],
+				}}
+			/>
 			<button className="search-button" onClick={handleClick}>
 				<IoSearchOutline />
 			</button>
