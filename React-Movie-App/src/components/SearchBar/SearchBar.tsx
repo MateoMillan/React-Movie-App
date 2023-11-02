@@ -104,7 +104,7 @@ export default function SearchBar({
 				profile={{
 					id: 2,
 					name: "Mateo",
-					mail: "yo@gmail.com",
+					email: "yo@gmail.com",
 					password: "xd",
 					gender: "Male",
 					age: 19,

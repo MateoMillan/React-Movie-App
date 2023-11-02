@@ -75,9 +75,17 @@ interface Profile {
 	name: string;
 	age: number;
 	gender: "Male" | "Female";
-	mail: string;
+	email: string;
 	password: string;
 	favourites: Movies;
 }
 
 type Users = Profile[]
+
+
+// Message 
+
+interface Message{
+	message: string,
+	color: string
+}
