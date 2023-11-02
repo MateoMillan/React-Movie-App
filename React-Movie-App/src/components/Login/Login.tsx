@@ -6,61 +6,80 @@ import {
 	IoEyeOutline,
 	IoMailOutline,
 } from "react-icons/io5";
-import Button from "../components/Button/Button";
-import { ChangeEvent, FormEvent, useState } from "react";
+import Button from "../Button/Button";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
-const defaultMessage = {
+const defaultMessage: Message = {
 	message: "",
 	color: "",
 };
 
 export default function Login() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-	const [{ message, color }, setMessage] = useState(defaultMessage);
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
+	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+	const [{ message, color }, setMessage] = useState<Message>(defaultMessage);
 	const [users, setUsers] = useState<Users>([]);
+	const [loggedInUser, setLoggedInUser] = useState<number>();
 
-	const usersNotVerified = localStorage.getItem("users");
+	useEffect(() => {
+		const usersNotVerified = localStorage.getItem("users");
+		const loggedInUserNotVerified = localStorage.getItem("loggedIn");
 
-	if (usersNotVerified) {
-		setUsers(JSON.parse(usersNotVerified));
-	}
+		console.log(loggedInUserNotVerified)
+
+		if (usersNotVerified && loggedInUserNotVerified) {
+			setUsers(JSON.parse(usersNotVerified));
+			setLoggedInUser(JSON.parse(loggedInUserNotVerified));
+		}
+	}, [localStorage]);
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		if (email && password) {
-			setMessage(defaultMessage);
-			if (users.length !== 0) {
-				setMessage(defaultMessage);
-				users.forEach((user) => {
-					console.log("Log In Success");
-					if (user.mail === email && user.password === password) {
-						console.log("Log In Success");
-						setMessage({
-							message: "Log In Success",
-							color: "success",
-						});
-					} else {
-						console.log("Log In Fail");
-						setMessage({
-							message: "The email or password are incorrect",
-							color: "red",
-						});
-					}
-				});
-			} else {
-				setMessage({
-					message: "The email or password are incorrect",
-					color: "red",
-				});
-			}
-		} else {
+		let validToLogIn = true;
+		let userID;
+
+		if (!(email && password)) {
+			validToLogIn = false;
 			setMessage({
 				message: "Please complete all fields",
 				color: "error",
 			});
+			return
+		}
+
+		for (let i = 0; i < users.length; i++) {
+			if (users[i].email === email && users[i].password === password) {
+				if (users[i].id !== loggedInUser) {
+					userID = users[i].id;
+					console.log(userID)
+					validToLogIn = true;
+					setMessage({
+						message: "Log In Success",
+						color: "nice",
+					});
+					break;
+				} else {
+					setMessage({
+						message: "You are already logged in!",
+						color: "error",
+					});
+				}
+				break;
+			} else {
+				validToLogIn = false;
+				setMessage({
+					message: "The email or password are incorrect",
+					color: "error",
+				});
+			}
+		}
+
+		if (validToLogIn && userID) {
+			console.log(userID);
+			localStorage.setItem("loggenIn", JSON.stringify(userID));
+			window.location.href = "/"
 		}
 	};
 
@@ -129,8 +148,8 @@ export default function Login() {
 					<Button text="Log In" type="submit" />
 					<div className="register-link-container">
 						Don't have and account yet?
-						<Link to="/register" className="register-link">
-							Register
+						<Link to="/signup" className="register-link">
+							Sign Up
 						</Link>
 					</div>
 				</form>

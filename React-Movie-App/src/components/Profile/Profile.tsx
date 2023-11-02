@@ -20,7 +20,7 @@ export default function Profile({ profile }: { profile: Profile }) {
 					<h2 className="mini-profile-name">
 						¡Hola, {profile.name}!
 					</h2>
-					<h2 className="mini-profile-mail">{profile.mail}</h2>
+					<h2 className="mini-profile-mail">{profile.email}</h2>
 				</div>
 				<div className="mini-profile-item mini-profile-middle-bottom">
 					<h2 className="middle-item mini-profile-age">

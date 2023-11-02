@@ -137,6 +137,11 @@
 	text-shadow: 0 0 5px rgba(0, 0, 0, 0.167);
 }
 
+.nice {
+	display: block;
+	color: #21c4c4;
+}
+
 .title-background-login {
 	position: absolute;
 	filter: blur(30px);
