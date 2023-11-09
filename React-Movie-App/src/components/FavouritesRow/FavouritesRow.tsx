@@ -3,7 +3,7 @@ import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 import Movie from "../Movie/Movie";
 import NoMovie from "../NoMovie/NoMovie";
 
-export default function Row({
+export default function FavouritesRow({
 	movies,
 	addMovieToFavourites,
 	removeFavourites,
@@ -13,7 +13,7 @@ export default function Row({
 	removeFavourites: (movie: Movie) => void;
 }) {
 	const row = document.getElementById("favourites-row");
-	const handleBack = () => {
+	const handleBackward = () => {
 		if (row && row?.scrollLeft !== 0) {
 			row.scrollLeft -= row.clientWidth;
 		}
@@ -30,7 +30,7 @@ export default function Row({
 			<button
 				className="row-button"
 				id="back-button"
-				onClick={handleBack}
+				onClick={handleBackward}
 			>
 				<IoChevronBackOutline />
 			</button>

@@ -18,7 +18,7 @@ export default function Profile({ profile }: { profile: Profile }) {
 			<div className={`mini-profile ${!open && "hidden"}`}>
 				<div className="mini-profile-item mini-profile-top">
 					<h2 className="mini-profile-name">
-						¡Hola, {profile.name}!
+						¡Hi, {profile.name}!
 					</h2>
 					<h2 className="mini-profile-mail">{profile.email}</h2>
 				</div>
@@ -39,7 +39,7 @@ export default function Profile({ profile }: { profile: Profile }) {
 						Edit Profile
 					</Link>
 					<Link
-						to={`/edit-profile/${profile.id}`}
+						to={`/logout`}
 						className="mini-profile-button log-out"
 					>
 						Log Out

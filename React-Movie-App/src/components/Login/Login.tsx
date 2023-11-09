@@ -21,12 +21,13 @@ export default function Login() {
 	const [{ message, color }, setMessage] = useState<Message>(defaultMessage);
 	const [users, setUsers] = useState<Users>([]);
 	const [loggedInUser, setLoggedInUser] = useState<number>();
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		const usersNotVerified = localStorage.getItem("users");
 		const loggedInUserNotVerified = localStorage.getItem("loggedIn");
 
-		console.log(loggedInUserNotVerified)
+		console.log(loggedInUserNotVerified);
 
 		if (usersNotVerified && loggedInUserNotVerified) {
 			setUsers(JSON.parse(usersNotVerified));
@@ -36,6 +37,7 @@ export default function Login() {
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		setIsLoading(() => true);
 
 		let validToLogIn = true;
 		let userID;
@@ -46,14 +48,16 @@ export default function Login() {
 				message: "Please complete all fields",
 				color: "error",
 			});
-			return
+			setIsLoading(() => false);
+
+			return;
 		}
 
 		for (let i = 0; i < users.length; i++) {
 			if (users[i].email === email && users[i].password === password) {
 				if (users[i].id !== loggedInUser) {
 					userID = users[i].id;
-					console.log(userID)
+					console.log(userID);
 					validToLogIn = true;
 					setMessage({
 						message: "Log In Success",
@@ -73,13 +77,15 @@ export default function Login() {
 					message: "The email or password are incorrect",
 					color: "error",
 				});
+				setIsLoading(() => false);
 			}
 		}
 
 		if (validToLogIn && userID) {
 			console.log(userID);
-			localStorage.setItem("loggenIn", JSON.stringify(userID));
-			window.location.href = "/"
+			localStorage.setItem("loggedIn", JSON.stringify(userID));
+			setIsLoading(() => false);
+			window.location.href = "/";
 		}
 	};
 
@@ -145,7 +151,7 @@ export default function Login() {
 						</div>
 					</div>
 					<div className={`message ${color}`}>{message}</div>
-					<Button text="Log In" type="submit" />
+					<Button text="Log In" type="submit" loading={isLoading} />
 					<div className="register-link-container">
 						Don't have and account yet?
 						<Link to="/signup" className="register-link">

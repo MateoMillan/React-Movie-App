@@ -4,6 +4,7 @@ import ErrorPage from "./ErrorPage";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
+import LogOut from "../components/LogOut/LogOut";
 
 export const router = createBrowserRouter([
 	{
@@ -22,5 +23,9 @@ export const router = createBrowserRouter([
 	{
 		path: "/signup",
 		element: <Signup />
+	},
+	{
+		path: "/logout",
+		element: <LogOut />
 	},
 ]);

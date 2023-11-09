@@ -1,0 +1,33 @@
+.guest-container {
+	position: absolute;
+	top: 60px;
+	right: 40px;
+	padding: 20px;
+}
+
+.guest-link {
+	padding: 20px;
+	border-radius: 1000px;
+	text-decoration: none;
+	color: #ddd;
+	margin: 0 20px;
+	transition: .2s;
+}
+
+.guest-signup {
+	border: 1px solid #eb2a2a;
+}
+
+.guest-login {
+	border: 1px solid #27d7d7;
+}
+
+.guest-signup:hover {
+	background-color: #eb2a2a;
+	color: #222;
+}
+
+.guest-login:hover {
+	background-color: #27d7d7;
+	color: #222;
+}
