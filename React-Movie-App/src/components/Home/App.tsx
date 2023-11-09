@@ -8,6 +8,8 @@ import Footer from "../Footer/Footer";
 import footerItems from "../../data/footer-items.json";
 
 function App() {
+	const [loggedUserID, setLoggedUserID] = useState("");
+	const [loggedInUser, setLoggedInUser] = useState<Profile>();
 	const [movies, setMovies] = useState<Movies>([]);
 	const [savedMovies, setSavedMovies] = useState<Movies>([]);
 	const [searchValue, setSearchValue] = useState("star wars");
@@ -15,24 +17,25 @@ function App() {
 		year: "All",
 		type: "All",
 	});
+	const users = localStorage.getItem("users");
 
-	const initializeSavedMovies = () => {
-		let initialSavedMovies: Movies = [];
-		for (let i = 0; i < localStorage.length; i++) {
-			if (
-				localStorage.key(i) &&
-				localStorage.getItem(localStorage.key(i) as string)
-			) {
-				initialSavedMovies.push(
-					JSON.parse(
-						localStorage.getItem(
-							localStorage.key(i) as string
-						) as string
-					)
-				);
+	const initializeLoggedInUser = (id: number) => {
+		if (users) {
+			const usersJSON: Users = JSON.parse(users);
+			const user = usersJSON.find((user) => user.id === id);
+			if (user) {
+				setLoggedInUser(() => user);
+				setSavedMovies(() => user.favourites);
 			}
 		}
-		setSavedMovies(initialSavedMovies);
+	};
+
+	const getLoggedInUserID = () => {
+		const loggedInUserNotVerified = localStorage.getItem("loggedIn");
+		if (loggedInUserNotVerified) {
+			setLoggedUserID(() => loggedInUserNotVerified);
+			initializeLoggedInUser(parseInt(loggedInUserNotVerified));
+		}
 	};
 
 	const requestMovies = () => {
@@ -60,19 +63,47 @@ function App() {
 	};
 
 	const addToFavourites = (movie: Movie) => {
-		if (!savedMovies.includes(movie)) {
-			setSavedMovies([...savedMovies, movie]);
-			localStorage.setItem(movie.Title, JSON.stringify(movie));
+		if (users) {
+			const usersJSON: Users = JSON.parse(users);
+			const user = usersJSON.find(
+				(user) => user.id === parseInt(loggedUserID)
+			);
+
+			if (user && !savedMovies.includes(movie)) {
+				let favourites = [...user.favourites, movie];
+
+				setSavedMovies(favourites);
+				user.favourites = favourites;
+
+				let newUsersJSON = usersJSON.map((element) => {
+					return element === user ? user : element;
+				});
+				localStorage.setItem("users", JSON.stringify(newUsersJSON));
+			}
 		}
 	};
 
 	const removeFavourites = (movie: Movie) => {
-		setSavedMovies(
-			savedMovies.filter((element) => {
-				return element !== movie;
-			})
-		);
-		localStorage.removeItem(movie.Title);
+		if (users) {
+			const usersJSON: Users = JSON.parse(users);
+			const user = usersJSON.find(
+				(user) => user.id === parseInt(loggedUserID)
+			);
+
+			let newUsersJSON;
+			if (user) {
+				let newSavedMovies = savedMovies.filter((element) => {
+					return element !== movie;
+				});
+				setSavedMovies(newSavedMovies);
+				user.favourites = newSavedMovies;
+				newUsersJSON = usersJSON.map((element) => {
+					return element === user ? user : element;
+				});
+
+				localStorage.setItem("users", JSON.stringify(newUsersJSON));
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -80,18 +111,22 @@ function App() {
 	}, [searchValue, filters]);
 
 	useEffect(() => {
-		initializeSavedMovies();
+		getLoggedInUserID();
 	}, []);
 
 	return (
 		<>
 			<TitleContainer />
-			<SearchBar
-				searchValue={searchValue}
-				setSearchValue={setSearchValue}
-				filters={filters}
-				setFilters={setFilters}
-			/>
+			{loggedUserID && (
+				<SearchBar
+					loggedUserID={loggedUserID}
+					loggedInUser={loggedInUser}
+					searchValue={searchValue}
+					setSearchValue={setSearchValue}
+					filters={filters}
+					setFilters={setFilters}
+				/>
+			)}
 			<h3 className="row-title">Search movies</h3>
 			<Row
 				movies={movies}

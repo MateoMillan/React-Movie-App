@@ -1,14 +1,18 @@
 import "./SearchBar.css";
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import Select from "../Select/Select";
 import years from "../../data/years.json";
 import types from "../../data/mediaTypes.json";
 import Profile from "../Profile/Profile";
+import { GUEST_TEXT } from "../../constants/constants";
+import Guest from "../Guest/Guest";
 
 interface SearchBarProps {
 	searchValue: string;
 	filters: Filters;
+	loggedInUser: Profile | undefined;
+	loggedUserID: string;
 	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 	setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
@@ -16,28 +20,13 @@ interface SearchBarProps {
 export default function SearchBar({
 	searchValue,
 	filters,
+	loggedInUser,
+	loggedUserID,
 	setSearchValue,
 	setFilters,
 }: SearchBarProps) {
 	const search = document.getElementById("search");
 	const filterContainer = document.getElementById("filter-container");
-
-	function handleSubmit(event: FormEvent<HTMLFormElement>) {
-		event.preventDefault();
-		fetch(`http://www.omdbapi.com/?apikey=28435cd&s=${searchValue}`)
-			.then((response) => {
-				if (response.status !== 200) {
-					throw new Error("Error al buscar");
-				}
-				return response.json();
-			})
-			.then((data) => {
-				console.log(data);
-			})
-			.catch((error) => {
-				console.error("Error al buscar:", error);
-			});
-	}
 
 	function handleClick() {
 		if (search?.classList.contains("lifted")) {
@@ -61,10 +50,14 @@ export default function SearchBar({
 		setFilters({ year: filters.year, type: event.target.value });
 	}
 
+	useEffect(() => {
+		console.log(loggedUserID, GUEST_TEXT);
+	}, []);
+
 	return (
 		<div className="search-bar" id="search-bar">
 			<div className="profile-container"></div>
-			<form onSubmit={handleSubmit} className="form">
+			<form className="form">
 				<input
 					type="text"
 					name="search"
@@ -100,17 +93,11 @@ export default function SearchBar({
 					</div>
 				</div>
 			</form>
-			<Profile
-				profile={{
-					id: 2,
-					name: "Mateo",
-					email: "yo@gmail.com",
-					password: "xd",
-					gender: "Male",
-					age: 19,
-					favourites: [],
-				}}
-			/>
+			{loggedUserID == GUEST_TEXT ? (
+				<Guest />
+			) : loggedInUser !== undefined ? (
+				<Profile profile={loggedInUser} />
+			) : null}
 			<button className="search-button" onClick={handleClick}>
 				<IoSearchOutline />
 			</button>

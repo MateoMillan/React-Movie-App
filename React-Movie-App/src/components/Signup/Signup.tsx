@@ -14,7 +14,6 @@ import Button from "../Button/Button";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Select from "../Select/Select";
 
-
 const defaultMessage = {
 	message: "",
 	color: "",
@@ -40,7 +39,6 @@ export default function signup() {
 		if (usersNotVerified) {
 			setUsers(JSON.parse(usersNotVerified));
 		}
-		
 	}, [localStorage]);
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -88,6 +86,7 @@ export default function signup() {
 					newID = Math.floor(Math.random() * 10000);
 				}
 			});
+
 			const user = {
 				id: newID,
 				name: name,
@@ -95,9 +94,12 @@ export default function signup() {
 				age: age,
 				gender: gender,
 				email: email,
+				favourites: [],
 			};
+
 			console.log([...users, user]);
 			localStorage.setItem("users", JSON.stringify([...users, user]));
+
 			setMessage({
 				message: "Sign up success!",
 				color: "nice",

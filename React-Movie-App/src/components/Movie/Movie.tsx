@@ -11,20 +11,16 @@ export default function Movie({
 	isSaved = false,
 }: {
 	movie: Movie;
+	isSaved?: boolean;
 	addMovieToFavourites: (movie: Movie) => void;
 	removeFavourites: (movie: Movie) => void;
-	isSaved?: boolean;
 }) {
 	const handleAdd = () => {
-		if (!localStorage.getItem(movie.Title)) {
-			addMovieToFavourites(movie);
-			localStorage.setItem(movie.Title, JSON.stringify(movie));
-		}
+		addMovieToFavourites(movie);
 	};
 
 	const handleRemove = () => {
 		removeFavourites(movie);
-		localStorage.removeItem(movie.Title);
 	};
 
 	return (
