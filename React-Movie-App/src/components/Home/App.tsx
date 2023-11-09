@@ -6,6 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import FavouritesRow from "../FavouritesRow/FavouritesRow";
 import Footer from "../Footer/Footer";
 import footerItems from "../../data/footer-items.json";
+import SnackBar from "../SnackBar/SnackBar";
 
 function App() {
 	const [loggedUserID, setLoggedUserID] = useState("");
@@ -16,6 +17,13 @@ function App() {
 	const [filters, setFilters] = useState<Filters>({
 		year: "All",
 		type: "All",
+	});
+	const [isSnackBarActive, setIsSnackBarActive] = useState(false);
+	const [snackBarData] = useState({
+		title: "Warn!",
+		message: "Log In to save movies",
+		color: "warn",
+		setActive: setIsSnackBarActive,
 	});
 	const users = localStorage.getItem("users");
 
@@ -79,6 +87,8 @@ function App() {
 					return element === user ? user : element;
 				});
 				localStorage.setItem("users", JSON.stringify(newUsersJSON));
+			} else if (!user) {
+				setIsSnackBarActive(() => true);
 			}
 		}
 	};
@@ -140,6 +150,7 @@ function App() {
 				removeFavourites={removeFavourites}
 			/>
 			<Footer items={footerItems} />
+			<SnackBar active={isSnackBarActive} {...snackBarData} />
 		</>
 	);
 }
